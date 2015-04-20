@@ -641,6 +641,13 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
         // Save all accounts in the default keychain.
         [NXOAuth2AccountStore storeAccountsInDefaultKeychain:self.accountsDict];
     }
+    
+    NXOAuth2Account* notificationSender = aNotification.object;
+    
+    NSDictionary* userInfo = @{ NXOAuth2AccountStoreNewAccountUserInfoKey : notificationSender};
+    [[NSNotificationCenter defaultCenter] postNotificationName: NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                        object: self
+                                                      userInfo: userInfo];
 }
 
 - (void)accountDidLoseAccessToken:(NSNotification *)aNotification;
