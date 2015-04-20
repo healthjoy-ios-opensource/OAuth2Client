@@ -530,13 +530,17 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
         }
     }
     
-    foundAccount.accessToken = client.accessToken;
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject: foundAccount
-                                                         forKey: NXOAuth2AccountStoreNewAccountUserInfoKey];
+    NSDictionary *userInfo = @{};
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:NXOAuth2AccountStoreAccountsDidChangeNotification
-                                                        object:self
-                                                      userInfo:userInfo];
+    if (nil != foundAccount)
+    {
+        foundAccount.accessToken = client.accessToken;
+        userInfo = @{ NXOAuth2AccountStoreNewAccountUserInfoKey : foundAccount};
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                        object: self
+                                                      userInfo: userInfo];
 }
 
 - (void)addAccount:(NXOAuth2Account *)account;
