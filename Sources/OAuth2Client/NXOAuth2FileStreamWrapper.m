@@ -33,8 +33,13 @@
 
 - (instancetype)init;
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+    [self doesNotRecognizeSelector: _cmd];
+    
     NSAssert(NO, @"-init should not be used in the NXOAuth2FileStreamWrapper");
     return nil;
+#pragma clang diagnostic pop
 }
 
 - (instancetype)initWithStream:(NSInputStream *)theStream contentLength:(unsigned long long)theContentLength;
