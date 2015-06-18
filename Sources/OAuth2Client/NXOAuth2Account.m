@@ -209,11 +209,22 @@ NSString * const NXOAuth2AccountDidFailToGetAccessTokenNotification = @"NXOAuth2
                                                         object:self];
 }
 
-- (void)oauthClient:(NXOAuth2Client *)client didFailToGetAccessTokenWithError:(NSError *)error;
+- (void)oauthClient:(NXOAuth2Client *)client didFailToGetAccessTokenWithError:(NSError *)error
 {
-    accessToken = nil;
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:error
-                                                         forKey:NXOAuth2AccountStoreErrorKey];
+    NSParameterAssert(nil != client);
+    NSParameterAssert(nil != error );
+    
+    self->accessToken = nil;
+    
+    
+    
+    NSDictionary *userInfo =
+    @{
+         NXOAuth2AccountStoreErrorKey: error ,
+         @"NXOAuth2ClientWithError"  : client
+    };
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:NXOAuth2AccountDidFailToGetAccessTokenNotification
                                                         object:self
                                                       userInfo:userInfo];

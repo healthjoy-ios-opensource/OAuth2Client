@@ -138,6 +138,13 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
                                                  name:NXOAuth2AccountDidLoseAccessTokenNotification
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(accountDidFailToDownloadAccessToken:)
+                                                 name:NXOAuth2AccountDidFailToGetAccessTokenNotification
+                                               object:nil];
+    
+    
+    
     return self;
 }
 
@@ -654,6 +661,21 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
 {
     NSLog(@"Removing account with id '%@' from account store because it lost its access token.", [aNotification.object identifier]);
     [self removeAccount:aNotification.object];
+}
+
+- (void)accountDidFailToDownloadAccessToken:(NSNotification *)aNotification
+{
+    id notificationSender = aNotification.userInfo[@"NXOAuth2ClientWithError"];
+    if (![notificationSender isMemberOfClass: [NXOAuth2Client class]])
+    {
+        NSLog(@"!!! achtung !!! [NXOAuth2AccountStore] accountDidFailToDownloadAccessToken - invalid sender %@", notificationSender);
+        return;
+    }
+    
+    NSError* error = aNotification.userInfo[NXOAuth2AccountStoreErrorKey];
+    
+    NXOAuth2Client* client = (NXOAuth2Client*)notificationSender;
+    [self oauthClient: client didFailToGetAccessTokenWithError: error];
 }
 
 #pragma mark Keychain Support
