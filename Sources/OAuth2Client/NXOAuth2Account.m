@@ -216,12 +216,10 @@ NSString * const NXOAuth2AccountDidFailToGetAccessTokenNotification = @"NXOAuth2
     
     self->accessToken = nil;
     
-    
-    
     NSDictionary *userInfo =
     @{
          NXOAuth2AccountStoreErrorKey: error ,
-         @"NXOAuth2ClientWithError"  : client
+         NXOAuth2ClientWithErrorKey  : client
     };
     
     

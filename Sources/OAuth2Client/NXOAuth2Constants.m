@@ -38,3 +38,7 @@ NSString * const NXOAuth2HTTPErrorDomain = @"NXOAuth2HTTPErrorDomain";
 #pragma mark UserInfo Keys
 
 NSString * const NXOAuth2AccountStoreErrorKey = @"NXOAuth2AccountStoreErrorKey";
+NSString * const NXOAuth2ClientWithErrorKey = @"NXOAuth2ClientWithError";
+
+
+

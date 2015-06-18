@@ -16,7 +16,7 @@
 
 #pragma mark OAuth2 Errors
 
-extern NSString * const NXOAuth2ErrorDomain;                    // domain
+OBJC_EXTERN NSString * const NXOAuth2ErrorDomain;                    // domain
 
 // Error Codes from http://tools.ietf.org/html/draft-ietf-oauth-v2-10#section-3.2.1
 
@@ -25,40 +25,40 @@ extern NSString * const NXOAuth2ErrorDomain;                    // domain
  * unsupported parameter or parameter value, or is otherwise
  * malformed.
  */
-extern NSInteger const NXOAuth2InvalidRequestErrorCode;            // -1001
+OBJC_EXTERN NSInteger const NXOAuth2InvalidRequestErrorCode;            // -1001
 
 /*
  * The client identifier provided is invalid.
  */
-extern NSInteger const NXOAuth2InvalidClientErrorCode;            // -1002
+OBJC_EXTERN NSInteger const NXOAuth2InvalidClientErrorCode;            // -1002
 
 /*
  * The client is not authorized to use the requested response
  * type.
  */
-extern NSInteger const NXOAuth2UnauthorizedClientErrorCode;        // -1003
+OBJC_EXTERN NSInteger const NXOAuth2UnauthorizedClientErrorCode;        // -1003
 
 /*
  * The redirection URI provided does not match a pre-registered
  * value.
  */
-extern NSInteger const NXOAuth2RedirectURIMismatchErrorCode;    // -1004
+OBJC_EXTERN NSInteger const NXOAuth2RedirectURIMismatchErrorCode;    // -1004
 
 /*
  * The end-user or authorization server denied the request.
  */
-extern NSInteger const NXOAuth2AccessDeniedErrorCode;            // -1005
+OBJC_EXTERN NSInteger const NXOAuth2AccessDeniedErrorCode;            // -1005
 
 /*
  * The requested response type is not supported by the
  * authorization server.
  */
-extern NSInteger const NXOAuth2UnsupportedResponseTypeErrorCode;// -1006
+OBJC_EXTERN NSInteger const NXOAuth2UnsupportedResponseTypeErrorCode;// -1006
 
 /*
  * The requested scope is invalid, unknown, or malformed.
  */
-extern NSInteger const NXOAuth2InvalidScopeErrorCode;            // -1007
+OBJC_EXTERN NSInteger const NXOAuth2InvalidScopeErrorCode;            // -1007
 
 
 // Custom Error codes
@@ -66,12 +66,12 @@ extern NSInteger const NXOAuth2InvalidScopeErrorCode;            // -1007
 /*
  * The connection failed because the token expired and could not be refreshed
  */
-extern NSInteger const NXOAuth2CouldNotRefreshTokenErrorCode;    // -2001
+OBJC_EXTERN NSInteger const NXOAuth2CouldNotRefreshTokenErrorCode;    // -2001
 
 
 #pragma mark HTTP Errors
 
-extern NSString * const NXOAuth2HTTPErrorDomain;                // domain
+OBJC_EXTERN NSString * const NXOAuth2HTTPErrorDomain;                // domain
 
 // The error code represents the http status code
 
@@ -104,6 +104,9 @@ typedef enum  {
 } NXOAuth2TrustMode;
 
 
+#pragma mark UserInfo Keys
 
-extern NSString * const NXOAuth2AccountStoreErrorKey;
+OBJC_EXTERN NSString * const NXOAuth2AccountStoreErrorKey;
+
+OBJC_EXTERN NSString * const NXOAuth2ClientWithErrorKey;
 

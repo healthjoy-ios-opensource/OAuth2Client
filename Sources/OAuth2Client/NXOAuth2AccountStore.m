@@ -665,7 +665,7 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
 
 - (void)accountDidFailToDownloadAccessToken:(NSNotification *)aNotification
 {
-    id notificationSender = aNotification.userInfo[@"NXOAuth2ClientWithError"];
+    id notificationSender = aNotification.userInfo[NXOAuth2ClientWithErrorKey];
     if (![notificationSender isMemberOfClass: [NXOAuth2Client class]])
     {
         NSLog(@"!!! achtung !!! [NXOAuth2AccountStore] accountDidFailToDownloadAccessToken - invalid sender %@", notificationSender);
