@@ -129,7 +129,7 @@ extern NSString * const NXOAuth2ClientConnectionContextTokenRefresh;
  * Authenticate with username & password (User Credentials Flow)
  */
 - (void)authenticateWithClientCredentials;
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password;
+- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password bundle:(NSString *)bundle;
 
 /*!
  * Authenticate with assertion (Assertion Flow)

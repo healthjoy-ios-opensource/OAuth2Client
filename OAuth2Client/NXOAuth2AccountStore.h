@@ -137,7 +137,7 @@ typedef void(^NXOAuth2PreparedAuthorizationURLHandler)(NSURL *preparedURL);
 
 - (void)requestAccessToAccountWithType:(NSString *)accountType;
 - (void)requestAccessToAccountWithType:(NSString *)accountType withPreparedAuthorizationURLHandler:(NXOAuth2PreparedAuthorizationURLHandler)aPreparedAuthorizationURLHandler;
-- (void)requestAccessToAccountWithType:(NSString *)accountType username:(NSString *)username password:(NSString *)password;
+- (void)requestAccessToAccountWithType:(NSString *)accountType username:(NSString *)username password:(NSString *)password bundle:(NSString *)bundle;
 - (void)requestAccessToAccountWithType:(NSString *)accountType assertionType:(NSURL *)assertionType assertion:(NSString *)assertion;
 - (void)requestClientCredentialsAccessWithType:(NSString *)accountType;
 - (void)addAccount:(NXOAuth2Account *)account;

@@ -393,7 +393,7 @@ NSString * const NXOAuth2ClientConnectionContextTokenRefresh = @"tokenRefresh";
 }
 
 // User Password Flow Only
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password;
+- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password bundle:(NSString *)bundle;
 {
     NSAssert1(!authConnection, @"authConnection already running with: %@", authConnection);
     
@@ -406,6 +406,7 @@ NSString * const NXOAuth2ClientConnectionContextTokenRefresh = @"tokenRefresh";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"password", @"grant_type",
                                        clientId, @"client_id",
+                                       bundle, @"bundle",
                                        clientSecret, @"client_secret",
                                        username, @"username",
                                        password, @"password",

@@ -226,10 +226,10 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
     aPreparedAuthorizationURLHandler(preparedURL);
 }
 
-- (void)requestAccessToAccountWithType:(NSString *)accountType username:(NSString *)username password:(NSString *)password;
+- (void)requestAccessToAccountWithType:(NSString *)accountType username:(NSString *)username password:(NSString *)password bundle:(NSString *)bundle;
 {
     NXOAuth2Client *client = [self pendingOAuthClientForAccountType:accountType];
-    [client authenticateWithUsername:username password:password];
+    [client authenticateWithUsername:username password:password bundle:bundle];
 }
 
 - (void)requestAccessToAccountWithType:(NSString *)accountType assertionType:(NSURL *)assertionType assertion:(NSString *)assertion;
