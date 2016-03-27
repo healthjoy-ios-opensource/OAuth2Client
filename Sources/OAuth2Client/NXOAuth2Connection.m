@@ -494,7 +494,15 @@ sendingProgressHandler:(NXOAuth2ConnectionSendingProgressHandler)aSendingProgres
             }
         }
         
-        NSString *localizedError = [NSString stringWithFormat:NSLocalizedString(@"HTTP Error: %d", @"NXOAuth2HTTPErrorDomain description"), self.statusCode];
+
+        NSDictionary* body = [NSJSONSerialization JSONObjectWithData:self.data
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+        NSString *errorDescription = [body objectForKey:@"error_description"];
+        NSString *errorNumTries = [body objectForKey:@"num_tries"];
+        
+        NSString *localizedError = [NSString stringWithFormat:NSLocalizedString(@"HTTP Error: %d, Error Description: %@ Num Tries: %@", @"NXOAuth2HTTPErrorDomain description"),
+                                    self.statusCode, errorDescription, errorNumTries];
         NSDictionary *errorUserInfo = [NSDictionary dictionaryWithObject:localizedError forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:NXOAuth2HTTPErrorDomain
                                              code:self.statusCode
