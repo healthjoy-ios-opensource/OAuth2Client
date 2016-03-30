@@ -500,9 +500,10 @@ sendingProgressHandler:(NXOAuth2ConnectionSendingProgressHandler)aSendingProgres
                                                                error:nil];
         NSString *errorDescription = [body objectForKey:@"error_description"];
         NSString *errorNumTries = [body objectForKey:@"num_tries"];
+        NSString *mayBanTime = [body objectForKey:@"ban_ttl"];
         
-        NSString *localizedError = [NSString stringWithFormat:NSLocalizedString(@"HTTP Error: %d, Error Description: %@ Num Tries: %@", @"NXOAuth2HTTPErrorDomain description"),
-                                    self.statusCode, errorDescription, errorNumTries];
+        NSString *localizedError = [NSString stringWithFormat:NSLocalizedString(@"HTTP Error: %d, Error Description: %@ Num Tries: %@ Ban Time: %@", @"NXOAuth2HTTPErrorDomain description"),
+                                    self.statusCode, errorDescription, errorNumTries, mayBanTime];
         NSDictionary *errorUserInfo = [NSDictionary dictionaryWithObject:localizedError forKey:NSLocalizedDescriptionKey];
         NSError *error = [NSError errorWithDomain:NXOAuth2HTTPErrorDomain
                                              code:self.statusCode
