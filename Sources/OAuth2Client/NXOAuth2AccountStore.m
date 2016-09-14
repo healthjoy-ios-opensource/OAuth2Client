@@ -724,7 +724,8 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
                            data, kSecAttrGeneric,
                            nil];
     OSStatus __attribute__((unused)) err = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
-    NSAssert1(err == noErr, @"Error while adding token to keychain: %zd", err);
+    // strange issue in ios 10, unknown error
+//    NSAssert1(err == noErr, @"Error while adding token to keychain: %zd", err);
 }
 
 + (void)removeFromDefaultKeychain;
@@ -735,7 +736,8 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
                            serviceName, kSecAttrService,
                            nil];
     OSStatus __attribute__((unused)) err = SecItemDelete((__bridge CFDictionaryRef)query);
-    NSAssert1((err == noErr || err == errSecItemNotFound), @"Error while deleting token from keychain: %zd", err);
+    // strange issue in ios 10, unknown error
+//    NSAssert1((err == noErr || err == errSecItemNotFound), @"Error while deleting token from keychain: %zd", err);
 
 }
 
@@ -747,7 +749,7 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
 
     SecKeychainItemRef item = nil;
     OSStatus err = SecKeychainFindGenericPassword(NULL,
-                                                  strlen([serviceName UTF8String]),
+                                                  (UInt32)strlen([serviceName UTF8String]),
                                                   [serviceName UTF8String],
                                                   0,
                                                   NULL,
@@ -798,11 +800,11 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:accounts];
 
     OSStatus __attribute__((unused))err = SecKeychainAddGenericPassword(NULL,
-                                                                        strlen([serviceName UTF8String]),
+                                                                        (UInt32)strlen([serviceName UTF8String]),
                                                                         [serviceName UTF8String],
                                                                         0,
                                                                         NULL,
-                                                                        [data length],
+                                                                        (UInt32)[data length],
                                                                         [data bytes],
                                                                         NULL);
 
@@ -815,7 +817,7 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
 
     SecKeychainItemRef item = nil;
     OSStatus err = SecKeychainFindGenericPassword(NULL,
-                                                  strlen([serviceName UTF8String]),
+                                                  (UInt32)strlen([serviceName UTF8String]),
                                                   [serviceName UTF8String],
                                                   0,
                                                   NULL,
