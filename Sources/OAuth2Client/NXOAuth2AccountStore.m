@@ -255,6 +255,12 @@ NSString * const kNXOAuth2AccountStoreAccountType = @"kNXOAuth2AccountStoreAccou
     }
 }
 
+- (void)setToken:(NXOAuth2AccessToken *)token type:(NSString *)accountType {
+    
+    NXOAuth2Client *client = [self pendingOAuthClientForAccountType:accountType];
+    client.accessToken = token;
+}
+
 #pragma mark Configuration
 
 - (void)setClientID:(NSString *)aClientID
