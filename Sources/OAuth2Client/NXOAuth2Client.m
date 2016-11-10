@@ -550,8 +550,7 @@ NSString * const NXOAuth2ClientConnectionContextTokenRefresh = @"tokenRefresh";
 - (void)oauthConnection:(NXOAuth2Connection *)connection didFailWithError:(NSError *)error;
 {
     NSString *body = [[NSString alloc] initWithData:connection.data encoding:NSUTF8StringEncoding];
-    NSLog(@"oauthConnection Error: %@", body);
-    
+    NSLog(@"oauthConnection Error: %@. Body: %@", error, body);
     
     if (connection == authConnection) {
         self.authenticating = NO;
